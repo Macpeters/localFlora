@@ -1,0 +1,41 @@
+$highlight: #002222;
+$dark: #ff4444;
+
+.jumbotron {
+  background: $highlight;
+  color: white;
+  padding-bottom: 20em;
+
+  .btn-primary {
+    background: lighten($highlight, 20%);
+    border-color: lighten($highlight, 20%);
+    &:hover {
+      background: lighten($highlight, 15%);
+    }
+  }
+
+  p {
+    color: lighten($highlight, 30%);
+    max-width: 75%;
+    margin: 1em auto 2em;
+  }
+
+  .navbar + & {
+    margin-top: -2em;
+  }
+
+  .dent-logo {
+    display: block;
+    background: $dark;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 7em;
+    height: 7em;
+    margin: auto;
+    border: 0.2em solid white;
+    img {
+      max-width: 100%;
+    }
+  }
+
+}

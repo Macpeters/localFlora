@@ -1,0 +1,15 @@
+<div class="mediaCard clearfix">
+  <img src="<%= @plant.image || @default_image %>">
+  <div>
+    <ul>
+      <li><h3><%= @plant.common_name %><h3></li>
+      <li><h4><%= @plant.latin_name %>, 
+        <%= @plant.location %>, 
+        <%= @plant.height %> cm,
+        <%= @plant.width %> cm</h4></li>
+      <li>Uses: <%= @plant.uses %></li>
+    </ul>
+    <%= link_to 'Edit', edit_plant_path(@plant) %> | 
+    <a href="/">Plants</a>
+  </div>
+</div>
