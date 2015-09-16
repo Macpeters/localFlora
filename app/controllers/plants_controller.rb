@@ -1,62 +1,74 @@
 class PlantsController < ApplicationController
  
   def new
-    @plant = Plant.new
+    @resource = Plant.new
+    @flower = Flower.new
+    @fruit = Fruit.new
+    @leaf = Leaf.new
+    @root = Root.new
+    @stalk = Stalk.new
     respond_to do |format|
       format.html
-      format.json { render json: @plant }
+      format.json { render json: @resource }
     end
   end
  
   def create
     params['plant']['location'] = params['location']
-    @plant = Plant.new(plant_params)
+    params['plant']['size'] = params['size']
+    @resource = Plant.new(resource_params)
     respond_to do |format|
-      if @plant.save
-        format.html { redirect_to @plant, notice: 'successfully created.' }
-        format.json { render :show, status: :created, location: @plant }
+      if @resource.save
+        format.html { redirect_to @resource, notice: 'successfully created.' }
+        format.json { render :show, status: :created, location: @resource }
       else
         format.html { render :new }
-        format.json { render json: @plant.errors, 
+        format.json { render json: @resource.errors, 
             status: :unprocessable_entity }
       end
     end
   end
 
   def index
-    @plants = Plant.all
+    @collection = Plant.all
     respond_to do |format|
       format.html
-      format.json { render json: @plants }
+      format.json { render json: @collection }
     end
   end
 
   def show
-    @plant = Plant.find(params['id'])
+    @resource = Plant.find(params['id'])
     @default_image = ""
   end
 
   def edit
-    @plant = Plant.find(params['id'])
+    @resource = Plant.find(params['id'])
+    @flower = @resource.flower || Flower.new
+    @fruit = @resource.fruit || Fruit.new
+    @leaf = @resource.leaf || Leaf.new
+    @root = @resource.root || Root.new
+    @stalk = @resource.stalk || Stalk.new
   end
 
   def update
     params['plant']['location'] = params['location']
-    @plant = Plant.find(params['id'])
+    params['plant']['size'] = params['size']
+    @resource = Plant.find(params['id'])
     respond_to do |format|
-      if @plant.update(plant_params)
-        format.html { redirect_to @plant, notice: 'successfully updated.' }
-        format.json { render :show, status: :ok, location: @plant }
+      if @resource.update(resource_params)
+        format.html { redirect_to @resource, notice: 'successfully updated.' }
+        format.json { render :show, status: :ok, location: @resource }
       else
         format.html { render :edit }
-        format.json { render json: @plant.errors, 
+        format.json { render json: @resource.errors, 
               status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @plant.destroy
+    @resource.destroy
     respond_to do |format|
       format.html { redirect_to plant_url, 
           notice: 'successfully destroyed.' }
@@ -66,7 +78,7 @@ class PlantsController < ApplicationController
 
   private
 
-  def plant_params
-    params.require(:plant).permit(:common_name, :latin_name, :image, :location, :uses, :height, :width)
+  def resource_params
+    params.require(:plant).permit(:common_name, :latin_name, :image, :location, :uses, :cautions, :size)
   end
 end

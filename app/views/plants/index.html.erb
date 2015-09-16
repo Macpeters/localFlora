@@ -1,15 +1,19 @@
 <h1>plants index</h1>
 
-<ul>
-  <% @plants.each do |plant| %>
-    <li>
-      <%= plant.common_name %>
-      <%= link_to "Edit", edit_plant_url(plant) %>
-      <%= link_to "Show",
-        plant_url(plant) %>
-    </li>
-  <% end %>
-</ul>
+<div class="listing">
+  <ul>
+    <% @collection.each do |plant| %>
+      <li>
+        <img src="<%= plant.image %>">
+        <%= plant.common_name %>
+        <%= link_to "Edit", edit_plant_url(plant) %>
+        <%= link_to "Show",
+          plant_url(plant) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 
 
 

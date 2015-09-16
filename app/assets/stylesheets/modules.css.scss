@@ -6,6 +6,17 @@
   }
 }
 
+.listing {
+  li {
+    list-style: none;
+    border-bottom-style: solid;
+  }
+  img{
+    width: 3em;
+    height: 3em;
+  } 
+}
+
 .mediaCard {
   img{
     width: 15em;

@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912145432) do
+ActiveRecord::Schema.define(version: 20150916005200) do
 
   create_table "flowers", force: :cascade do |t|
     t.string  "colour"
     t.integer "num_petals"
     t.boolean "clustered"
     t.string  "flowering_month"
+    t.string  "image"
+    t.boolean "edible"
+    t.text    "uses"
+    t.text    "cautions"
+    t.integer "plant_id"
   end
 
   create_table "fruits", force: :cascade do |t|
@@ -25,23 +30,56 @@ ActiveRecord::Schema.define(version: 20150912145432) do
     t.boolean "has_pit"
     t.integer "diameter"
     t.string  "fruiting_month"
-  end
-
-  create_table "plants", force: :cascade do |t|
-    t.string  "common_name"
-    t.string  "latin_name"
-    t.string  "image"
-    t.string  "location"
-    t.text    "uses"
-    t.integer "height"
-    t.integer "width"
-  end
-
-  create_table "properties", force: :cascade do |t|
-    t.string  "type"
     t.string  "image"
     t.boolean "edible"
     t.text    "uses"
+    t.text    "cautions"
+    t.integer "plant_id"
+  end
+
+  create_table "leaves", force: :cascade do |t|
+    t.string  "arrangement"
+    t.string  "margin"
+    t.string  "colour"
+    t.string  "tip_shape"
+    t.string  "base_shape"
+    t.string  "image"
+    t.boolean "edible"
+    t.text    "uses"
+    t.text    "cautions"
+    t.integer "plant_id"
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.string "common_name"
+    t.string "latin_name"
+    t.string "image"
+    t.string "location"
+    t.text   "uses"
+    t.text   "cautions"
+    t.string "size"
+  end
+
+  create_table "roots", force: :cascade do |t|
+    t.boolean "runners"
+    t.string  "root_type"
+    t.string  "image"
+    t.boolean "edible"
+    t.text    "uses"
+    t.text    "cautions"
+    t.integer "plant_id"
+  end
+
+  create_table "stalks", force: :cascade do |t|
+    t.string  "shape"
+    t.boolean "climbing"
+    t.boolean "has_hairs"
+    t.string  "colour"
+    t.string  "image"
+    t.boolean "edible"
+    t.text    "uses"
+    t.text    "cautions"
+    t.integer "plant_id"
   end
 
 end

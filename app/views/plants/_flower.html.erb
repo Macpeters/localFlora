@@ -1,0 +1,20 @@
+<%= form_for(@flower) do |f| %>
+  
+  <% if @flower.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@flower.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+      <ul>
+      <% @flower.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= @flower.inspect %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
