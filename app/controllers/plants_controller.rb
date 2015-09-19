@@ -2,11 +2,16 @@ class PlantsController < ApplicationController
  
   def new
     @resource = Plant.new
-    @flower = Flower.new
-    @fruit = Fruit.new
-    @leaf = Leaf.new
-    @root = Root.new
-    @stalk = Stalk.new
+    @resource.flower = Flower.new
+    @resource.fruit = Fruit.new
+    @resource.leaf = Leaf.new
+    @resource.root = Root.new
+    @resource.stalk = Stalk.new
+    @arrangements = Leaf.arrangements
+    @margins = Leaf.margins
+    @tip_shapes = Leaf.tip_shapes
+    @base_shapes = Leaf.base_shapes
+    @root_types = Root.root_types
     respond_to do |format|
       format.html
       format.json { render json: @resource }
@@ -44,11 +49,26 @@ class PlantsController < ApplicationController
 
   def edit
     @resource = Plant.find(params['id'])
-    @flower = @resource.flower || Flower.new
-    @fruit = @resource.fruit || Fruit.new
-    @leaf = @resource.leaf || Leaf.new
-    @root = @resource.root || Root.new
-    @stalk = @resource.stalk || Stalk.new
+    @arrangements = Leaf.arrangements
+    @margins = Leaf.margins
+    @tip_shapes = Leaf.tip_shapes
+    @base_shapes = Leaf.base_shapes
+    @root_types = Root.root_types
+    unless @resource.flower
+      @resource.flower = Flower.new
+    end
+    unless @resource.fruit
+      @resource.fruit = Fruit.new
+    end
+    unless @resource.root
+      @resource.root = Root.new
+    end
+    unless @resource.leaf
+      @resource.leaf = Leaf.new
+    end
+    unless @resource.stalk
+      @resource.stalk = Stalk.new
+    end
   end
 
   def update

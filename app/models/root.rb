@@ -1,6 +1,6 @@
 class Root < ActiveRecord::Base
 
-  def root_types
+  def self.root_types
     return [
       "taproot",
       "fibrous"

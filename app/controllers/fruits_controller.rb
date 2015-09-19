@@ -64,6 +64,6 @@ class FruitsController < ApplicationController
   private
 
   def resource_params
-    params.require(:fruit).permit(:colour, :has_pit, :diameter, :fruiting_month)
+    params.require(:fruit).permit(:colour, :has_pit, :diameter, :fruiting_month, :image, :edible, :uses, :cautions, :plant_id)
   end
 end

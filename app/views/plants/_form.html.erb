@@ -1,11 +1,7 @@
-<%= @flower.inspect %>
-
 <%= form_for(@resource) do |f| %>
-  
   <% if @resource.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
-
       <ul>
       <% @resource.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -14,41 +10,48 @@
     </div>
   <% end %>
   
-  <div>
-    <div class="field">
-      <%= f.label :common_name %><br>
-      <%= f.text_field :common_name %>
-    </div>
-    <div class="field">
-      <%= f.label :latin_name %><br>
-      <%= f.text_field :latin_name %>
-    </div>
+  <div class="article">
+    <ul>
+      <li>
+        <%= f.label :common_name %><br>
+        <%= f.text_field :common_name %>
+      </li>
+      <li>
+        <%= f.label :latin_name %><br>
+        <%= f.text_field :latin_name %>
+      </li>
+      <li>
+        <%= f.label :location %><br>
+        <%= select_tag "location",
+          options_for_select(@resource.locations), 
+            :include_blank => true %>
+      </li>
+      <li>
+        <%= f.label :size %><br> (cm)
+        <%= select_tag "size",
+          options_for_select(@resource.sizes), 
+            :include_blank => true %>
+      </li>
+      <li>
+        <%= f.label :uses %><br>
+        <%= f.text_area :uses %>
+      </li>
+      <li>
+        <%= f.label :cautions %><br>
+        <%= f.text_area :cautions %>
+      </li>
+    </ul>
     <div class="field">
       <%= f.label :image %><br>
-      <%= f.text_field :image %>
+      <%= f.text_field :image,
+        :class => 'image_field' %>
     </div>
-    <div class="field">
-      <%= f.label :location %><br>
-      <%= select_tag "location",
-       options_for_select(@resource.locations) %>
-    </div>
-    <div class="field">
-      <%= f.label :uses %><br>
-      <%= f.text_area :uses %>
-    </div>
-    <div class="field">
-      <%= f.label :cautions %><br>
-      <%= f.text_area :cautions %>
-    </div>
-    <div class="field">
-      <%= f.label :size %><br> (cm)
-      <%= select_tag "size",
-       options_for_select(@resource.sizes) %>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   </div>
   <%= render 'flower' %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render 'fruit' %>
+  <%= render 'leaf' %>
+  <%= render 'root' %>
 <% end %>

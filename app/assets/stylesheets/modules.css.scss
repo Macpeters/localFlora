@@ -37,14 +37,39 @@
 .article {
   margin-left: 1.5em;
   font-size: 1em;
+  clear: both;
+  border-bottom-style: solid;
 
   input, textarea, select, .uneditable-input {
     border: 0.2em solid #bbb;
-    width: 50%;
     padding: 0.5em;
     height: auto !important;
     margin-bottom: 2em;
+    display: inline-block;
   }
+
+  li {
+    list-style-type: none;
+    float: left;
+    padding-right: 15px;
+  }
+
+  .field {
+    width: 100%;
+    clear: both;
+  }
+
+  .image_field {
+    width: 70%;
+  }
+
+  text_area {
+    width: 100%;
+    float: left;
+  }
+
+
+
 }
 
 .navLink {

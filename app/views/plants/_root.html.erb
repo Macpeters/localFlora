@@ -1,0 +1,49 @@
+<%= form_for(@resource.root) do |f| %>
+  <% if @resource.root.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@resource.root.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+      <ul>
+      <% @resource.root.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="article">
+    <h2>Root</h2>
+    <ul>
+      <li>
+        <%= f.label :runners %><br>
+        <%= f.check_box :runners %>
+      </li>
+      <li>
+        <%= f.label :edible %><br>
+        <%= f.check_box :edible %>
+      </li>
+      <li>
+        <%= f.label :root_type %><br>
+        <%= select_tag "root_type",
+          options_for_select(@root_types), 
+            :include_blank => true %>
+      </li>
+    </ul>
+    <div class="field">
+      <%= f.label "Image Url" %><br>
+      <%= f.text_field :image, 
+          :class => 'image_field' %>
+    </div>
+    <div class="field">
+      <%= f.label :uses %><br>
+      <%= f.text_area :uses %>
+    </div>
+    <div class="field">
+      <%= f.label :cautions %><br>
+      <%= f.text_area :cautions %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+
+<% end %>

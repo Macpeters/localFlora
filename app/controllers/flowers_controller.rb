@@ -64,6 +64,6 @@ class FlowersController < ApplicationController
   private
 
   def resource_params
-    params.require(:flower).permit(:colour, :num_petals, :clustered, :flowering_month)
+    params.require(:flower).permit(:colour, :num_petals, :clustered, :flowering_month, :image, :edible, :uses, :caution, :plant_id)
   end
 end

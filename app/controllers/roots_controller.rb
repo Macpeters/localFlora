@@ -64,6 +64,6 @@ class RootsController < ApplicationController
   private
 
   def resource_params
-    params.require(:root).permit(:runners, :root_type)
+    params.require(:root).permit(:runners, :root_type, :image, :edible, :uses, :cautions, :plant_id)
   end
 end

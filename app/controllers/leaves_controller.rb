@@ -64,6 +64,6 @@ class LeavesController < ApplicationController
   private
 
   def resource_params
-    params.require(:leaf).permit(:arrangement, :margin, :colour, :tip_shape, :base_shape)
+    params.require(:leaf).permit(:arrangement, :margin, :colour, :tip_shape, :base_shape, :image, :edible, :uses, :cautions, :plant_id)
   end
 end

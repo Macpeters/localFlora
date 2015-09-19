@@ -1,17 +1,17 @@
-<%= form_for(@resource.flower) do |f| %>
-  <% if @resource.flower.errors.any? %>
+<%= form_for(@resource.fruit) do |f| %>
+  <% if @resource.fruit.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@resource.flower.errors.count, "error") %> prohibited this resource from being saved:</h2>
+      <h2><%= pluralize(@resource.fruit.errors.count, "error") %> prohibited this resource from being saved:</h2>
 
       <ul>
-      <% @resource.flower.errors.full_messages.each do |message| %>
+      <% @resource.fruit.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
   <div class="article">
-    <h2>Flower</h2>
+    <h2>Fruit</h2>
     <ul>
       <li>
         <%= f.label :colour %><br>
@@ -20,20 +20,20 @@
               :include_blank => true %>
       </li>
       <li>
-        <%= f.label "Number of Petals" %><br>
-        <%= f.number_field :num_petals %>
+        <%= f.label "diameter" %><br>
+        <%= f.number_field :diameter %>
       </li>
       <li>
-        <%= f.label :clustered %><br>
-        <%= f.check_box :clustered %>
+        <%= f.label :has_pit %><br>
+        <%= f.check_box :has_pit %>
       </li>
       <li>
         <%= f.label :edible %><br>
         <%= f.check_box :edible %>
       </li>
       <li>
-        <%= f.label :flowering_month %><br>
-        <%= select_tag "flowering_month",
+        <%= f.label :fruiting_month %><br>
+        <%= select_tag "fruiting_month",
           options_for_select(months), 
           :include_blank => true %>
       </li>

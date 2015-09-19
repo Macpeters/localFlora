@@ -1,6 +1,6 @@
 class Leaf < ActiveRecord::Base
 
-  def arrangements
+  def self.arrangements
     return [
       "opposite",
       "alternate",
@@ -8,7 +8,7 @@ class Leaf < ActiveRecord::Base
     ]
   end
 
-  def margins
+  def self.margins
     return [
       "lobed",
       "serrated",
@@ -16,7 +16,7 @@ class Leaf < ActiveRecord::Base
     ]
   end
 
-  def tip_shapes
+  def self.tip_shapes
     return [
       "accute",
       "obtuse",
@@ -24,7 +24,7 @@ class Leaf < ActiveRecord::Base
     ]
   end
 
-  def base_shapes
+  def self.base_shapes
     return [
       "acuminate",
       "oblique",
