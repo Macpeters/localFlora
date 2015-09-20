@@ -19,20 +19,12 @@ class PlantsController < ApplicationController
   end
  
   def create
-    puts "CREATE PARAMS: #{params}"
-    params['plant']['location'] = params['location']
-    params['plant']['size'] = params['size']
-
-    params['flower']['flowering_month'] = params['flowering_month']
-    params['flower']['colour'] = params['flower_colour']
-
     @resource = Plant.new(resource_params)
 
     respond_to do |format|
       if @resource.save
-        # @resource.flower = Flower.new(flower_params)
-        # unless @resource.flower.save
-        # end
+        @resource.flower = Flower.new(flower_params)
+        @resource.flower.save
         # @resource.fruit = Fruit.new(fruit_params)
         # unless @resource.fruit.save
         # end
@@ -66,7 +58,13 @@ class PlantsController < ApplicationController
                                   :locations => @resource.locations,
                                   :sizes => @resource.sizes,
                                   :colours => colours,
-                                  :months => months
+                                  :months => months,
+                                  :arrangements => Leaf.arrangements,
+                                  :margins => Leaf.margins,
+                                  :tip_shapes => Leaf.tip_shapes,
+                                  :base_shapes => Leaf.base_shapes,
+                                  :root_types => Root.root_types,
+                                  :stalk_shapes => Stalk.shapes
                                   }  
                   }
     end
@@ -74,19 +72,23 @@ class PlantsController < ApplicationController
 
   def edit
     @resource = Plant.find(params['id'])
-    @arrangements = Leaf.arrangements
-    @margins = Leaf.margins
-    @tip_shapes = Leaf.tip_shapes
-    @base_shapes = Leaf.base_shapes
-    @root_types = Root.root_types
   end
 
   def update
     @resource = Plant.find(params['id'])
     respond_to do |format|
       if @resource.update(resource_params)
+        @resource.flower.update(flower_params)
+        @resource.fruit.update(fruit_params)
+        @resource.leaf.update(leaf_params)
+        @resource.root.update(root_params)
+        @resource.stalk.update(stalk_params)
         return render json: {:plant => @resource, 
-                                      :flower => @resource.flower
+                                      :flower => @resource.flower,
+                                      :fruit => @resource.fruit,
+                                      :leaf => @resource.leaf,
+                                      :stalk => @resource.stalk,
+                                      :root => @resource.root
                                       }  
       else
         respond_to do |format|

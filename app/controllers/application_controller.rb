@@ -12,36 +12,18 @@ class ApplicationController < ActionController::Base
 
   def months
     return [
-      "",
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "July",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec"
+      "", "Jan", "Feb", "Mar", "Apr",
+      "May", "Jun", "July", "Aug",
+      "Sept", "Oct", "Nov", "Dec"
     ]
   end
 
   def colours
     return [
-      "",
-      "Red",
-      "Yellow",
-      "Pink",
-      "Green", 
-      "Purlple",
-      "Orange",
-      "Blue",
-      "Black",
-      "White",
-      "Grey",
-      "Brown"
+      "", "Red", "Yellow", "Pink",
+      "Green",  "Purlple", "Orange",
+      "Blue",  "Black",  "White",
+      "Grey",  "Brown"
     ]
   end
 

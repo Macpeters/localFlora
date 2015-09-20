@@ -2,9 +2,9 @@
     Common Name: <input type="text" ng-model="plant.common_name" />
     Latin Name: <input type="text" ng-model="plant.latin_name" />
     
-    Location: <select ng-options="location as location for location in locations" ng-model="plant.location"><br /></select>
+    Location: <select ng-options="location for location in locations" ng-model="plant.location"><br /></select>
     
-    Size: <select ng-options="size as size for size in sizes" ng-model="plant.size"><br /></select><br />
+    Size: <select ng-options="size for size in sizes" ng-model="plant.size"><br /></select><br />
     
     Uses: <input type="text" ng-model="plant.uses" />
     Cautions: <input type="text" ng-model="plant.cautions" /><br />
@@ -12,11 +12,11 @@
 
     <div>
       <h2>Flower</h2>
-      Colour: <select ng-options="colour as colour for colour in colours" ng-model="flower.colour"><br /></select>
-      Flowering Month: <select ng-options="month as month for month in months" ng-model="flower.flowering_month"><br /></select>
+      Colour: <select ng-options="colour for colour in colours" ng-model="flower.colour"><br /></select>
+      Flowering Month: <select ng-options="month for month in months" ng-model="flower.flowering_month"><br /></select>
       Number of Petals: <input type="number" ng-model="flower.num_petals" />
       Clustered: <input type="checkbox" ng-model="flower.clustered" />
-      Edible: <input type="checkbox" ng-model="flower.edible" />
+      Edible: <input type="checkbox" ng-model="flower.edible" /><br />
       Uses: <input type="text" ng-model="flower.uses" />
       Cautions: <input type="text" ng-model="flower.cautions" /><br />
       Image: <input type="text" ng-model="flower.image" />
@@ -24,8 +24,8 @@
 
     <div>
       <h2>Fruit</h2>
-      Colour: <select ng-options="colour as colour for colour in colours" ng-model="fruit.colour"><br /></select>
-      Fruiting Month: <select ng-options="month as month for month in months" ng-model="fruit.fruiting_month"><br /></select>
+      Colour: <select ng-options="colour for colour in colours" ng-model="fruit.colour"><br /></select>
+      Fruiting Month: <select ng-options="month for month in months" ng-model="fruit.fruiting_month"><br /></select>
       Diameter: <input type="number" ng-model="fruit.diameter" />
       Has Pit: <input type="checkbox" ng-model="fruit.has_pit" />
       Edible: <input type="checkbox" ng-model="fruit.edible" /><br />
@@ -37,24 +37,37 @@
 
     <div>
       <h2>Leaf</h2>
-      Uses: <input type="text" ng-model="flower.uses" />
-      Cautions: <input type="text" ng-model="flower.cautions" /><br />
-      Image: <input type="text" ng-model="flower.image" />
+      Colour: <select ng-options="colour for colour in colours" ng-model="leaf.colour"><br /></select>
+      Arrangement: <select ng-options="arrangement for arrangement in arrangements" ng-model="leaf.arrangement"><br /></select>
+      Margin: <select ng-options="margin for margin in margins" ng-model="leaf.margin"><br /></select><br />
+      Tip Shape: <select ng-options="tip_shape for tip_shape in tip_shapes" ng-model="leaf.tip_shape"><br /></select>
+      Base Shape: <select ng-options="base_shape for base_shape in base_shapes" ng-model="leaf.base_shape"><br /></select>
+      Edible: <input type="checkbox" ng-model="leaf.edible" /><br />
+      Uses: <input type="text" ng-model="leaf.uses" />
+      Cautions: <input type="text" ng-model="leaf.cautions" /><br />
+      Image: <input type="text" ng-model="leaf.image" />
     </div>
 
 
     <div>
       <h2>Root</h2>
-      Uses: <input type="text" ng-model="flower.uses" />
-      Cautions: <input type="text" ng-model="flower.cautions" /><br />
-      Image: <input type="text" ng-model="flower.image" />
+      Root Type: <select ng-options="type for type in root_types" ng-model="root.root_type"><br /></select>
+      Edible: <input type="checkbox" ng-model="root.edible" />
+      Runners: <input type="checkbox" ng-model="root.runners" /><br />
+      Uses: <input type="text" ng-model="root.uses" />
+      Cautions: <input type="text" ng-model="root.cautions" /><br />
+      Image: <input type="text" ng-model="root.image" />
     </div>
 
     <div>
       <h2>Stalk</h2>
-      Uses: <input type="text" ng-model="flower.uses" />
-      Cautions: <input type="text" ng-model="flower.cautions" /><br />
-      Image: <input type="text" ng-model="flower.image" />
+      Colour: <select ng-options="colour for colour in colours" ng-model="stalk.colour"><br /></select>
+      Edible: <input type="checkbox" ng-model="stalk.edible" />
+      Has Hairs: <input type="checkbox" ng-model="stalk.has_hairs" />
+      Climbing: <input type="checkbox" ng-model="stalk.climbing" /><br />
+      Uses: <input type="text" ng-model="stalk.uses" />
+      Cautions: <input type="text" ng-model="stalk.cautions" /><br />
+      Image: <input type="text" ng-model="stalk.image" />
     </div>
     <input type="button" ng-click="reset()" value="Reset" />
     <input type="submit" ng-click="update(plant)" value="Save" />
