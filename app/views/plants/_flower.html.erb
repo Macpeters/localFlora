@@ -1,21 +1,10 @@
-<%= form_for(@resource.flower) do |f| %>
-  <% if @resource.flower.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@resource.flower.errors.count, "error") %> prohibited this resource from being saved:</h2>
-
-      <ul>
-      <% @resource.flower.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@resource.flower) do |f| %>
   <div class="article">
     <h2>Flower</h2>
     <ul>
       <li>
         <%= f.label :colour %><br>
-        <%= select_tag "Flower Colour",
+        <%= select_tag "flower_colour",
             options_for_select(colours), 
               :include_blank => true %>
       </li>
@@ -51,8 +40,8 @@
       <%= f.label :cautions %><br>
       <%= f.text_area :cautions %>
     </div>
-    <div class="actions">
+<!--     <div class="actions">
       <%= f.submit %>
-    </div>
+    </div> -->
   </div>
 <% end %>

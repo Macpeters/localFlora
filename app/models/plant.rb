@@ -6,6 +6,12 @@ class Plant < ActiveRecord::Base
   has_one :root
   has_one :stalk
 
+  accepts_nested_attributes_for :flower
+  accepts_nested_attributes_for :fruit
+  accepts_nested_attributes_for :leaf
+  accepts_nested_attributes_for :root
+  accepts_nested_attributes_for :stalk
+
 
   def locations
     return [

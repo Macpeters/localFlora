@@ -1,15 +1,4 @@
-<%= form_for(@resource.fruit) do |f| %>
-  <% if @resource.fruit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@resource.fruit.errors.count, "error") %> prohibited this resource from being saved:</h2>
-
-      <ul>
-      <% @resource.fruit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_fields_for(@resource.fruit) do |f| %>
   <div class="article">
     <h2>Fruit</h2>
     <ul>
@@ -51,8 +40,8 @@
       <%= f.label :cautions %><br>
       <%= f.text_area :cautions %>
     </div>
-    <div class="actions">
+<!--     <div class="actions">
       <%= f.submit %>
-    </div>
+    </div> -->
   </div>
 <% end %>

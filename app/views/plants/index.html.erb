@@ -1,20 +1,19 @@
 <h1>plants index</h1>
 
-<div class="listing">
+<div ng-controller="PlantCtrl">
+  <div class="listing">
   <ul>
-    <% @collection.each do |plant| %>
+    <div ng-repeat="plant in plants">
       <li>
-        <img src="<%= plant.image %>">
-        <%= plant.common_name %>
-        <%= link_to "Edit", edit_plant_url(plant) %>
-        <%= link_to "Show",
-          plant_url(plant) %>
+        <img src="{{plant.image}}">
+        {{plant.common_name}}
+        <a ng-href="/plants/{{plant.id}}">Show</a>
+        <a ng-href="/plants/{{plant.id}}/edit">Edit</a>
       </li>
-    <% end %>
+    </div>
   </ul>
 </div>
-
-
+</div>
 
 
 <%= link_to "New", new_plant_url %>

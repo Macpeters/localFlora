@@ -13,5 +13,48 @@
     <a href="/">Plants</a>
   </div>
 
-  <%= @resource.flower.inspect %>
+  
+
+  <div class="mediaCard clearfix">
+    <h3>Flower</h3>
+    <ul>
+      <li><img src="<%= @flower.image || @default_image %>"></li>
+      <li>Flowering Month: <%= @flower.flowering_month %></li>
+      <li>Clustered: <%= @flower.clustered %> </li>
+      <li>Number of Petals: <%= @flower.num_petals %></li>
+      <li>Colour: <%= @flower.colour %></li>
+      <li>Uses: <%= @flower.uses %></li>
+      <li>Cautions: <%= @flower.cautions %></li>
+    </ul>
+  </div>
+
+  <div class="mediaCard clearfix">
+    <h3>Fruit</h3>
+    <ul>
+
+    </ul>
+  </div>
+
+  <div class="mediaCard clearfix">
+    <h3>Leaf</h3>
+    <ul>
+
+    </ul>
+  </div>
+
+  <div class="mediaCard clearfix">
+    <h3>Root</h3>
+    <ul>
+
+    </ul>
+  </div>
+
+  <div class="mediaCard clearfix">
+    <h3>Stalk</h3>
+    <ul>
+
+    </ul>
+  </div>
+
+
 </div>
