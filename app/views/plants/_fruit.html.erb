@@ -3,24 +3,6 @@
     <h2>Fruit</h2>
     <ul>
       <li>
-        <%= f.label :colour %><br>
-        <%= select_tag "Flower Colour",
-            options_for_select(colours), 
-              :include_blank => true %>
-      </li>
-      <li>
-        <%= f.label "diameter" %><br>
-        <%= f.number_field :diameter %>
-      </li>
-      <li>
-        <%= f.label :has_pit %><br>
-        <%= f.check_box :has_pit %>
-      </li>
-      <li>
-        <%= f.label :edible %><br>
-        <%= f.check_box :edible %>
-      </li>
-      <li>
         <%= f.label :fruiting_month %><br>
         <%= select_tag "fruiting_month",
           options_for_select(months), 

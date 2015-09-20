@@ -58,6 +58,18 @@ class PlantsController < ApplicationController
     @resource = Plant.find(params['id'])
     @flower = @resource.flower
     @default_image = ""
+    respond_to do |format|
+      format.html
+      format.json { render json: {:plant => @resource, 
+                                  :flower => @resource.flower,
+                                  :fruit => @resource.fruit,
+                                  :locations => @resource.locations,
+                                  :sizes => @resource.sizes,
+                                  :colours => colours,
+                                  :months => months
+                                  }  
+                  }
+    end
   end
 
   def edit
@@ -67,35 +79,21 @@ class PlantsController < ApplicationController
     @tip_shapes = Leaf.tip_shapes
     @base_shapes = Leaf.base_shapes
     @root_types = Root.root_types
-    unless @resource.flower
-      @resource.flower = Flower.new
-    end
-    unless @resource.fruit
-      @resource.fruit = Fruit.new
-    end
-    unless @resource.root
-      @resource.root = Root.new
-    end
-    unless @resource.leaf
-      @resource.leaf = Leaf.new
-    end
-    unless @resource.stalk
-      @resource.stalk = Stalk.new
-    end
   end
 
   def update
-    params['plant']['location'] = params['location']
-    params['plant']['size'] = params['size']
     @resource = Plant.find(params['id'])
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to @resource, notice: 'successfully updated.' }
-        format.json { render :show, status: :ok, location: @resource }
+        return render json: {:plant => @resource, 
+                                      :flower => @resource.flower
+                                      }  
       else
-        format.html { render :edit }
-        format.json { render json: @resource.errors, 
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @resource.errors, 
               status: :unprocessable_entity }
+        end
       end
     end
   end

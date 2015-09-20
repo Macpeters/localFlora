@@ -1,57 +1,61 @@
-<%= form_for(@resource) do |f| %>
-  <% if @resource.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
-      <ul>
-      <% @resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+ <form novalidate class="article">
+    Common Name: <input type="text" ng-model="plant.common_name" />
+    Latin Name: <input type="text" ng-model="plant.latin_name" />
+    
+    Location: <select ng-options="location as location for location in locations" ng-model="plant.location"><br /></select>
+    
+    Size: <select ng-options="size as size for size in sizes" ng-model="plant.size"><br /></select><br />
+    
+    Uses: <input type="text" ng-model="plant.uses" />
+    Cautions: <input type="text" ng-model="plant.cautions" /><br />
+    Image: <input type="text" ng-model="plant.image" />
+
+    <div>
+      <h2>Flower</h2>
+      Colour: <select ng-options="colour as colour for colour in colours" ng-model="flower.colour"><br /></select>
+      Flowering Month: <select ng-options="month as month for month in months" ng-model="flower.flowering_month"><br /></select>
+      Number of Petals: <input type="number" ng-model="flower.num_petals" />
+      Clustered: <input type="checkbox" ng-model="flower.clustered" />
+      Edible: <input type="checkbox" ng-model="flower.edible" />
+      Uses: <input type="text" ng-model="flower.uses" />
+      Cautions: <input type="text" ng-model="flower.cautions" /><br />
+      Image: <input type="text" ng-model="flower.image" />
     </div>
-  <% end %>
-  
-  <div class="article">
-    <ul>
-      <li>
-        <%= f.label :common_name %><br>
-        <%= f.text_field :common_name %>
-      </li>
-      <li>
-        <%= f.label :latin_name %><br>
-        <%= f.text_field :latin_name %>
-      </li>
-      <li>
-        <%= f.label :location %><br>
-        <%= select_tag "location",
-          options_for_select(@resource.locations), 
-            :include_blank => true %>
-      </li>
-      <li>
-        <%= f.label :size %><br> (cm)
-        <%= select_tag "size",
-          options_for_select(@resource.sizes), 
-            :include_blank => true %>
-      </li>
-      <li>
-        <%= f.label :uses %><br>
-        <%= f.text_area :uses %>
-      </li>
-      <li>
-        <%= f.label :cautions %><br>
-        <%= f.text_area :cautions %>
-      </li>
-    </ul>
-    <div class="field">
-      <%= f.label :image %><br>
-      <%= f.text_field :image,
-        :class => 'image_field' %>
+
+    <div>
+      <h2>Fruit</h2>
+      Colour: <select ng-options="colour as colour for colour in colours" ng-model="fruit.colour"><br /></select>
+      Fruiting Month: <select ng-options="month as month for month in months" ng-model="fruit.fruiting_month"><br /></select>
+      Diameter: <input type="number" ng-model="fruit.diameter" />
+      Has Pit: <input type="checkbox" ng-model="fruit.has_pit" />
+      Edible: <input type="checkbox" ng-model="fruit.edible" /><br />
+      Uses: <input type="text" ng-model="fruit.uses" />
+      Cautions: <input type="text" ng-model="fruit.cautions" /><br />
+      Image: <input type="text" ng-model="fruit.image" />
     </div>
-    <div class="actions">
-      <%= f.submit %>
+
+
+    <div>
+      <h2>Leaf</h2>
+      Uses: <input type="text" ng-model="flower.uses" />
+      Cautions: <input type="text" ng-model="flower.cautions" /><br />
+      Image: <input type="text" ng-model="flower.image" />
     </div>
-  </div>
-  <!--%= render 'flower' %-->
-  <!--%= render 'fruit' %-->
-  <!--%= render 'leaf' %-->
-  <!--%= render 'root' %-->
-<% end %>
+
+
+    <div>
+      <h2>Root</h2>
+      Uses: <input type="text" ng-model="flower.uses" />
+      Cautions: <input type="text" ng-model="flower.cautions" /><br />
+      Image: <input type="text" ng-model="flower.image" />
+    </div>
+
+    <div>
+      <h2>Stalk</h2>
+      Uses: <input type="text" ng-model="flower.uses" />
+      Cautions: <input type="text" ng-model="flower.cautions" /><br />
+      Image: <input type="text" ng-model="flower.image" />
+    </div>
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="update(plant)" value="Save" />
+  </form>
