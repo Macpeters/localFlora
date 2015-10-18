@@ -7,26 +7,7 @@ class ApplicationController < ActionController::Base
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
-
-  helper_method :months, :colours
-
-  def months
-    return [
-      "", "Jan", "Feb", "Mar", "Apr",
-      "May", "Jun", "July", "Aug",
-      "Sept", "Oct", "Nov", "Dec"
-    ]
-  end
-
-  def colours
-    return [
-      "", "Red", "Yellow", "Pink",
-      "Green",  "Purlple", "Orange",
-      "Blue",  "Black",  "White",
-      "Grey",  "Brown"
-    ]
-  end
-
+  
   protected
 
   def verified_request?

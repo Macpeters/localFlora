@@ -30,6 +30,7 @@ angular.module('LocalFlora', [])
           $scope.tip_shapes = response.data.tip_shapes;
           $scope.base_shapes = response.data.base_shapes;
           $scope.root_types = response.data.root_types;
+          $scope.stalk_shapes = response.data.stalk_shapes;
         });
      };
      $scope.getPlantData();
@@ -46,6 +47,10 @@ angular.module('LocalFlora', [])
         }).then(function(response) {
           $scope.plant = response.data.plant;
           $scope.flower = response.data.flower;
+          $scope.fruit = response.data.fruit;
+          $scope.leaf = response.data.leaf;
+          $scope.root = response.data.root;
+          $scope.stalk = response.data.stalk;
 
           $scope.master = response.data.plant;
         }, function(response) {

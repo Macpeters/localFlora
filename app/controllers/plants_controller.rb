@@ -1,17 +1,16 @@
 class PlantsController < ApplicationController
  
   def new
-    @resource = Plant.new
-    @resource.flower = Flower.new
-    @resource.fruit = Fruit.new
-    @resource.leaf = Leaf.new
-    @resource.root = Root.new
-    @resource.stalk = Stalk.new
-    @arrangements = Leaf.arrangements
-    @margins = Leaf.margins
-    @tip_shapes = Leaf.tip_shapes
-    @base_shapes = Leaf.base_shapes
-    @root_types = Root.root_types
+    @plant = Plant.new
+    @locations = Plant.locations
+    @sizes = Plant.sizes
+    @months = Plant.months
+    @colours = Plant.colours
+    @arrangements = Plant.arrangements
+    @margins = Plant.margins
+    @tip_shapes = Plant.tip_shapes
+    @base_shapes = Plant.base_shapes
+    @root_types = Plant.root_types
     respond_to do |format|
       format.html
       format.json { render json: @resource }
@@ -23,11 +22,6 @@ class PlantsController < ApplicationController
 
     respond_to do |format|
       if @resource.save
-        @resource.flower = Flower.new(flower_params)
-        @resource.flower.save
-        # @resource.fruit = Fruit.new(fruit_params)
-        # unless @resource.fruit.save
-        # end
         format.html { redirect_to @resource, notice: 'successfully created.' }
         format.json { render :show, status: :created, location: @resource }
       else
@@ -48,56 +42,45 @@ class PlantsController < ApplicationController
 
   def show
     @resource = Plant.find(params['id'])
-    @flower = @resource.flower
     @default_image = ""
     respond_to do |format|
       format.html
       format.json { render json: {:plant => @resource, 
-                                  :flower => @resource.flower,
-                                  :fruit => @resource.fruit,
                                   :locations => @resource.locations,
                                   :sizes => @resource.sizes,
                                   :colours => colours,
                                   :months => months,
-                                  :arrangements => Leaf.arrangements,
-                                  :margins => Leaf.margins,
-                                  :tip_shapes => Leaf.tip_shapes,
-                                  :base_shapes => Leaf.base_shapes,
-                                  :root_types => Root.root_types,
-                                  :stalk_shapes => Stalk.shapes
+                                  :arrangements => Plant.arrangements,
+                                  :margins => Plant.margins,
+                                  :tip_shapes => Plant.tip_shapes,
+                                  :base_shapes => Plant.base_shapes,
+                                  :root_types => Plant.root_types,
+                                  :stalk_shapes => Plant.shapes
                                   }  
                   }
     end
   end
 
   def edit
-    @resource = Plant.find(params['id'])
+    @plant = Plant.find(params['id'])
+    @locations = Plant.locations
+    @sizes = Plant.sizes
+    @months = Plant.months
+    @colours = Plant.colours
+    @arrangements = Plant.arrangements
+    @margins = Plant.margins
+    @tip_shapes = Plant.tip_shapes
+    @base_shapes = Plant.base_shapes
+    @root_types = Plant.root_types
   end
 
   def update
     @resource = Plant.find(params['id'])
-    respond_to do |format|
       if @resource.update(resource_params)
-        @resource.flower.update(flower_params)
-        @resource.fruit.update(fruit_params)
-        @resource.leaf.update(leaf_params)
-        @resource.root.update(root_params)
-        @resource.stalk.update(stalk_params)
-        return render json: {:plant => @resource, 
-                                      :flower => @resource.flower,
-                                      :fruit => @resource.fruit,
-                                      :leaf => @resource.leaf,
-                                      :stalk => @resource.stalk,
-                                      :root => @resource.root
-                                      }  
+        redirect_to plant_url(@resource)  
       else
-        respond_to do |format|
-          format.html { render :edit }
-          format.json { render json: @resource.errors, 
-              status: :unprocessable_entity }
-        end
+        format.html { render :edit }
       end
-    end
   end
 
   def destroy
@@ -111,21 +94,12 @@ class PlantsController < ApplicationController
 
   private
   def resource_params
-    params.require(:plant).permit(:common_name, :latin_name, :image, :location, :uses, :cautions, :size)
+    params.require(:plant).permit(:common_name, :latin_name, :image, :location, :uses, :cautions, :size,
+      :fruit_colour, :fruit_has_pit, :fruit_diameter, :fruit_month, :fruit_image, :fruit_edible, :fruit_uses, :fruit_cautions,
+      :flower_colour, :flower_num_petals, :flower_clustered, :flower_month, :flower_image, :flower_edible, :flower_uses, :flower_cautions,
+      :leaf_arrangement, :leaf_margin, :leaf_colour, :leaf_tip_shape, :leaf_base_shape, :leaf_image, :leaf_edible, :leaf_uses, :leaf_cautions, 
+      :root_runners, :root_type, :root_image, :root_edible, :root_uses, :root_cautions, 
+      :stalk_shape, :stalk_climbing, :stalk_has_hairs, :stalk_colour)
   end
-  def fruit_params
-    params.require(:fruit).permit(:colour, :has_pit, :diameter, :fruiting_month, :image, :edible, :uses, :cautions, :plant_id)
-  end
-  def flower_params
-    params.require(:flower).permit(:colour, :num_petals, :clustered, :flowering_month, :image, :edible, :uses, :caution, :plant_id)
-  end
-  def leaf_params
-    params.require(:leaf).permit(:arrangement, :margin, :colour, :tip_shape, :base_shape, :image, :edible, :uses, :cautions, :plant_id)
-  end
-  def root_params
-    params.require(:root).permit(:runners, :root_type, :image, :edible, :uses, :cautions, :plant_id)
-  end
-  def stalk_params
-    params.require(:stalk).permit(:shape, :climbing, :has_hairs, :colour)
-  end
+
 end

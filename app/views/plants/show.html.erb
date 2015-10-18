@@ -18,13 +18,13 @@
   <div class="mediaCard clearfix">
     <h3>Flower</h3>
     <ul>
-      <li><img src="<%= @flower.image || @default_image %>"></li>
-      <li>Flowering Month: <%= @flower.flowering_month %></li>
-      <li>Clustered: <%= @flower.clustered %> </li>
-      <li>Number of Petals: <%= @flower.num_petals %></li>
-      <li>Colour: <%= @flower.colour %></li>
-      <li>Uses: <%= @flower.uses %></li>
-      <li>Cautions: <%= @flower.cautions %></li>
+      <li><img src="<%= @resource.flower_image || @default_image %>"></li>
+      <li>Flowering Month: <%= @resource.flower_month %></li>
+      <li>Clustered: <%= @resource.flower_clustered %> </li>
+      <li>Number of Petals: <%= @resource.flower_num_petals %></li>
+      <li>Colour: <%= @resource.flower_colour %></li>
+      <li>Uses: <%= @resource.flower_uses %></li>
+      <li>Cautions: <%= @resource.flower_cautions %></li>
     </ul>
   </div>
 
